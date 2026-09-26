@@ -1,16 +1,23 @@
 import { useState } from 'react'
 import typeColors from '../utils/typeColors'
 import { getArtworkUrl, getShowdownUrl } from '../utils/pokemonSprites'
+import { formatName } from '../utils/formatters'
 import '../Styles/Modal.css'
 
 function PokemonModal({ pokemon, onClose, initialViewMode = 'artwork' }) {
-  if (!pokemon) return null
   const [viewMode, setViewMode] = useState(initialViewMode)
-  const formattedId = `#${String(pokemon.id).padStart(3, '0')}`
+  const [moveFilter, setMoveFilter] = useState('')
 
+  if (!pokemon) return null
+
+  const formattedId = `#${String(pokemon.id).padStart(3, '0')}`
   const artworkUrl = getArtworkUrl(pokemon)
   const showdownUrl = getShowdownUrl(pokemon)
   const currentImgSrc = viewMode === 'showdown' ? showdownUrl : artworkUrl
+
+  const filteredMoves = (pokemon.moves || []).filter((m) =>
+    m.move.name.toLowerCase().includes(moveFilter.trim().toLowerCase().replace(/\s+/g, '-'))
+  )
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -80,6 +87,53 @@ function PokemonModal({ pokemon, onClose, initialViewMode = 'artwork' }) {
             <span className="stat-value">{(pokemon.weight / 10).toFixed(1)} kg</span>
           </div>
         </div>
+
+        {pokemon.abilities && pokemon.abilities.length > 0 && (
+          <div className="modal-detail-section">
+            <span className="detail-section-title">Abilities</span>
+            <div className="abilities-list">
+              {pokemon.abilities.map((item) => (
+                <span
+                  key={item.ability.name}
+                  className={`ability-badge ${item.is_hidden ? 'is-hidden' : ''}`}
+                >
+                  {formatName(item.ability.name)}
+                  {item.is_hidden && <span className="hidden-tag">Hidden</span>}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {pokemon.moves && pokemon.moves.length > 0 && (
+          <div className="modal-detail-section">
+            <div className="detail-section-header">
+              <span className="detail-section-title">
+                Moves ({pokemon.moves.length})
+              </span>
+              {pokemon.moves.length > 8 && (
+                <input
+                  type="text"
+                  className="move-search-input"
+                  placeholder="Filter moves..."
+                  value={moveFilter}
+                  onChange={(e) => setMoveFilter(e.target.value)}
+                />
+              )}
+            </div>
+            <div className="moves-container">
+              {filteredMoves.length > 0 ? (
+                filteredMoves.map((item) => (
+                  <span key={item.move.name} className="move-badge">
+                    {formatName(item.move.name)}
+                  </span>
+                ))
+              ) : (
+                <span className="no-moves-found">No matching moves</span>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
