@@ -12,14 +12,22 @@ body {
     min-height: 100vh;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #f1f5f9;
+    overflow-x: hidden;
+}
+
+.body {
+    width: 100%;
+    min-height: 100vh;
 }
 
 .contents {
-    gap: 36px;
+    gap: clamp(20px, 4vw, 36px);
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
     align-items: center;
-    padding-bottom: 50px;
+    padding-bottom: clamp(30px, 5vw, 50px);
+    width: 100%;
+    min-width: 0;
 }

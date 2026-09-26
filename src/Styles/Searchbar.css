@@ -3,12 +3,14 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 460px;
+    max-width: 480px;
     padding: 0 16px;
+    margin: 0 auto;
 }
 
 .searchbody input {
     flex: 1;
+    min-width: 0;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-right: none;
     border-top-left-radius: 12px;
@@ -53,6 +55,7 @@
     letter-spacing: 0.8px;
     box-shadow: 0 4px 15px rgba(220, 10, 45, 0.3);
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .searchbody button:hover {
@@ -63,4 +66,20 @@
 
 .searchbody button:active {
     transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .searchbody {
+        padding: 0 12px;
+    }
+
+    .searchbody input {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .searchbody button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
 }

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     background: linear-gradient(180deg, #241820 0%, #11121a 100%);
-    padding: 0.9rem 2.5rem;
+    padding: 0.85rem clamp(1rem, 4vw, 2.5rem);
     border-bottom: 2px solid rgb(255, 70, 70);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(220, 10, 45, 0.15);
     position: sticky;
@@ -16,10 +16,11 @@
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
 }
 
 .navbar-brand:hover {
@@ -27,8 +28,8 @@
 }
 
 .navbar-pokeball {
-    width: 36px;
-    height: 36px;
+    width: clamp(28px, 4vw, 36px);
+    height: clamp(28px, 4vw, 36px);
     object-fit: contain;
     filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.6));
     transition: transform 0.4s ease, filter 0.3s ease;
@@ -41,10 +42,10 @@
 
 .navbar-title {
     font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
-    font-size: 1.35rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
     font-weight: 800;
-    letter-spacing: 1.5px;
-    background: linear-gradient(135deg, #ffffff 30%);
+    letter-spacing: 1.2px;
+    background: linear-gradient(135deg, #ffffff 30%, #e2e8f0 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
@@ -52,9 +53,11 @@
 
 .Navbar ul {
     list-style: none;
-    gap: 16px;
+    gap: clamp(6px, 1.5vw, 16px);
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .Navbar li a {
@@ -62,13 +65,14 @@
     color: #94a3b8;
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: 700;
-    font-size: 14px;
-    padding: 8px 18px;
+    font-size: clamp(11px, 1.4vw, 14px);
+    padding: clamp(6px, 1vw, 8px) clamp(10px, 1.8vw, 18px);
     border-radius: 20px;
     transition: all 0.2s ease;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border: 1px solid transparent;
+    white-space: nowrap;
 }
 
 .Navbar li a:hover {
@@ -83,15 +87,21 @@
     box-shadow: 0 0 12px rgba(220, 10, 45, 0.4);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .Navbar {
-        padding: 0.8rem 1rem;
+        padding: 0.75rem 0.85rem;
     }
     .Navbar ul {
-        gap: 8px;
+        gap: 6px;
     }
     .Navbar li a {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 340px) {
+    .navbar-title {
+        display: none;
     }
 }
