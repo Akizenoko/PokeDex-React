@@ -18,7 +18,7 @@ function NavBar() {
         onKeyDown={(e) => e.key === 'Enter' && handleReload()}
       >
         <img src={pokeballImg} alt="Pokeball" className='navbar-pokeball' />
-        <span className='navbar-title'>Pokedex</span>
+        <span className='navbar-title'>Aki's Pokedex</span>
       </div>
       <ul>
         <li>
