@@ -1,0 +1,97 @@
+.Navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #241820 0%, #11121a 100%);
+    padding: 0.9rem 2.5rem;
+    border-bottom: 2px solid rgb(255, 70, 70);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(220, 10, 45, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.04);
+}
+
+.navbar-pokeball {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.6));
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-pokeball {
+    transform: rotate(35deg) scale(1.08);
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.9));
+}
+
+.navbar-title {
+    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    background: linear-gradient(135deg, #ffffff 30%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.Navbar ul {
+    list-style: none;
+    gap: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar li a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.Navbar li a:hover {
+    color: #f1f5f9;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.Navbar li a.active-nav {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(220, 10, 45, 0.9), rgba(185, 28, 28, 0.9));
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 12px rgba(220, 10, 45, 0.4);
+}
+
+@media (max-width: 600px) {
+    .Navbar {
+        padding: 0.8rem 1rem;
+    }
+    .Navbar ul {
+        gap: 8px;
+    }
+    .Navbar li a {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

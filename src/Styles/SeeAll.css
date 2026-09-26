@@ -1,0 +1,80 @@
+.see-all {
+    width: 100%;
+    max-width: 1080px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 0 20px;
+}
+
+.pokemon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    min-height: 400px;
+    width: 100%;
+}
+
+.loading-text {
+    color: #94a3b8;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 20px 40px 20px;
+    background: rgba(26, 29, 41, 0.6);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.pagination span {
+    color: #cbd5e1;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0 6px;
+}
+
+.pagination button {
+    border-radius: 20px;
+    border: 1px solid rgba(220, 10, 45, 0.6);
+    background: linear-gradient(135deg, #232736 0%, #171924 100%);
+    color: #ffffff;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pagination button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #dc0a2d 0%, #a8001d 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(220, 10, 45, 0.4);
+    transform: translateY(-1px);
+}
+
+.pagination button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.06);
+    background: #191b24;
+}
