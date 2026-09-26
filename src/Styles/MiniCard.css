@@ -39,6 +39,16 @@
     z-index: 0;
 }
 
+.mini-card-img-wrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(85px, 16vw, 110px);
+    width: 100%;
+}
+
 .mini-card img {
     position: relative;
     z-index: 1;
@@ -46,7 +56,25 @@
     width: clamp(85px, 16vw, 110px);
     object-fit: contain;
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    animation: miniSpriteFade 0.2s ease-out;
+}
+
+.mini-card img.mini-showdown-img {
+    height: clamp(60px, 12vw, 80px);
+    width: clamp(60px, 12vw, 80px);
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes miniSpriteFade {
+    from {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .mini-card:hover img {

@@ -11,6 +11,7 @@ function SeeAllPage() {
   const [totalCount, setTotalCount] = useState(1302)
   const [jumpPage, setJumpPage] = useState('')
   const [selectedPokemon, setSelectedPokemon] = useState(null)
+  const [viewMode, setViewMode] = useState('artwork')
   const limit = 20
 
   useEffect(() => {
@@ -70,12 +71,37 @@ function SeeAllPage() {
 
   return (
     <div className="see-all">
+      <div className="see-all-controls">
+        <div className="see-all-toggle-group">
+          <span className="see-all-toggle-label">Sprites:</span>
+          <button
+            type="button"
+            className={`see-all-toggle-btn ${viewMode === 'artwork' ? 'active' : ''}`}
+            onClick={() => setViewMode('artwork')}
+          >
+            Artwork
+          </button>
+          <button
+            type="button"
+            className={`see-all-toggle-btn ${viewMode === 'showdown' ? 'active' : ''}`}
+            onClick={() => setViewMode('showdown')}
+          >
+            Showdown
+          </button>
+        </div>
+      </div>
+
       <div className="pokemon-grid">
         {loading ? (
           <p className="loading-text">Loading...</p>
         ) : (
           pokemonList.map((p) => (
-            <MiniCard key={p.id} pokemon={p} onClick={setSelectedPokemon} />
+            <MiniCard
+              key={p.id}
+              pokemon={p}
+              onClick={setSelectedPokemon}
+              viewMode={viewMode}
+            />
           ))
         )}
       </div>
@@ -130,7 +156,11 @@ function SeeAllPage() {
         </form>
       </div>
 
-      <PokemonModal pokemon={selectedPokemon} onClose={() => setSelectedPokemon(null)} />
+      <PokemonModal
+        pokemon={selectedPokemon}
+        onClose={() => setSelectedPokemon(null)}
+        initialViewMode={viewMode}
+      />
     </div>
   )
 }

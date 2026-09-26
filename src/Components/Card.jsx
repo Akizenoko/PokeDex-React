@@ -1,8 +1,15 @@
+import { useState } from 'react'
 import typeColors from '../utils/typeColors'
+import { getArtworkUrl, getShowdownUrl } from '../utils/pokemonSprites'
 import '../Styles/Card.css'
 
 function Card({ pokemon }) {
+    const [viewMode, setViewMode] = useState('artwork')
     const formattedId = `#${String(pokemon?.id ?? '').padStart(3, '0')}`
+
+    const artworkUrl = getArtworkUrl(pokemon)
+    const showdownUrl = getShowdownUrl(pokemon)
+    const currentImgSrc = viewMode === 'showdown' ? showdownUrl : artworkUrl
 
     return (
         <div className='Card'>
@@ -13,10 +20,34 @@ function Card({ pokemon }) {
                 <span className='id-tag'>{formattedId}</span>
             </div>
 
+            <div className='image-toggle-group'>
+                <button
+                    type='button'
+                    className={`image-toggle-btn ${viewMode === 'artwork' ? 'active' : ''}`}
+                    onClick={() => setViewMode('artwork')}
+                >
+                    Artwork
+                </button>
+                <button
+                    type='button'
+                    className={`image-toggle-btn ${viewMode === 'showdown' ? 'active' : ''}`}
+                    onClick={() => setViewMode('showdown')}
+                >
+                    Showdown
+                </button>
+            </div>
+
             <div className='image-container'>
                 <img 
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`} 
+                    key={`${pokemon?.id}-${viewMode}`}
+                    className={`pokemon-card-img ${viewMode === 'showdown' ? 'is-showdown' : ''}`}
+                    src={currentImgSrc} 
                     alt={pokemon?.name} 
+                    onError={(e) => {
+                        if (viewMode === 'showdown' && e.currentTarget.src !== artworkUrl) {
+                            e.currentTarget.src = artworkUrl
+                        }
+                    }}
                 />
             </div>
 

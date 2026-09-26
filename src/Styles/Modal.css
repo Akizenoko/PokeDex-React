@@ -128,6 +128,54 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.modal-toggle-group {
+    display: inline-flex;
+    background: rgba(15, 17, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 3px;
+    gap: 4px;
+    margin: 2px 0;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.modal-toggle-btn {
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-toggle-btn:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.modal-toggle-btn.active {
+    background: linear-gradient(135deg, #dc0a2d 0%, #a8001d 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(220, 10, 45, 0.4);
+}
+
+.modal-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(110px, 20vh, 160px);
+    width: 100%;
+    margin: 2px 0;
+}
+
 .modal-image {
     height: clamp(120px, 22vh, 170px);
     width: clamp(120px, 22vh, 170px);
@@ -136,6 +184,25 @@
     position: relative;
     z-index: 1;
     margin: 4px 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    animation: modalSpriteFade 0.25s ease-out;
+}
+
+.modal-image.is-showdown {
+    height: clamp(80px, 16vh, 120px);
+    width: clamp(80px, 16vh, 120px);
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.7));
+}
+
+@keyframes modalSpriteFade {
+    from {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .modal-types {
